@@ -2,7 +2,7 @@ defmodule WordsContainedInStringChallenge do
   def words_contained_in_string(input, words) do
     input_list = String.codepoints(input)
 
-    Enum.filter(words, fn word -> is_contained?(word, input_list) end)
+    Enum.filter(words, &is_contained?(&1, input_list))
   end
 
   defp is_contained?(word, input_list) do
@@ -18,7 +18,7 @@ defmodule WordsContainedInStringChallenge do
 
   defp has_characters?({letter, amount}, input_list) do
     input_list
-    |> Enum.filter(fn input_letter -> input_letter == letter end)
+    |> Enum.filter(&(&1 == letter))
     |> Enum.count()
     |> has_number_of_characteres?(amount)
   end
